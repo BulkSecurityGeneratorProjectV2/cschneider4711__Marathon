@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.file.Files;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -72,7 +73,7 @@ public class UpdateRunnerPhotoViaImportAction extends Action {
 
 	private Upload fetchPhoto(String importPhotoFromURL, String contentType)
 			throws IOException {
-		final File tmpFile = File.createTempFile("importImageFromURL", "tmp");
+		final File tmpFile = Files.createTempFile("importImageFromURL", "tmp").toFile();
 		final URL url = new URL(importPhotoFromURL);
 		System.out.println("URL protocol: "+url.getProtocol());
 		System.out.println("URL host + port: "+url.getHost()+(url.getPort() != -1?(":"+url.getPort()):""));
